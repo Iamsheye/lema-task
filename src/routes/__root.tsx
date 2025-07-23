@@ -43,8 +43,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
   component: () => (
     <RootDocument>
-      <div className="flex justify-center pt-[12.75%]">
-        <main className="mx-2.5 max-w-[856px] flex-1 md:mx-4">
+      <div className="flex justify-center overflow-auto pt-[12.75%]">
+        <main className="mx-4 w-full max-w-[856px] flex-1 overflow-auto">
           <Outlet />
         </main>
       </div>

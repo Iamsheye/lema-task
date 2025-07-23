@@ -8,11 +8,6 @@ import { PostGrid } from "@/components/PostGrid";
 
 export const Route = createFileRoute("/users/$id")({
   component: RouteComponent,
-  loader: async ({ context, params }) => {
-    await context.queryClient.prefetchQuery(
-      context.trpc.posts.listByUser.queryOptions({ userId: params.id }),
-    );
-  },
 });
 
 function RouteComponent() {

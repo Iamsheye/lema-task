@@ -2,9 +2,11 @@ import { QueryClient } from "@tanstack/react-query";
 import superjson from "superjson";
 import { createTRPCClient, httpBatchStreamLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
+import { Toaster } from "react-hot-toast";
 
 import type { TRPCRouter } from "@/integrations/trpc/router";
 import { TRPCProvider } from "@/integrations/trpc/react";
+import { useTRPCErrorHandler } from "@/lib/trpc-error-handler";
 
 function getUrl() {
   const base = (() => {
@@ -43,9 +45,17 @@ export function getContext() {
 }
 
 export function Provider({ children }: { children: React.ReactNode }) {
+  useTRPCErrorHandler();
   return (
-    <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-      {children}
-    </TRPCProvider>
+    <>
+      <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+        {children}
+      </TRPCProvider>
+      <Toaster
+        toastOptions={{
+          duration: 4000,
+        }}
+      />
+    </>
   );
 }

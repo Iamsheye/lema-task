@@ -56,14 +56,19 @@ export function Pagination({
   const pageNumbers = generatePageNumbers();
 
   return (
-    <div className={cn("flex items-center justify-end md:gap-10", className)}>
+    <div
+      className={cn(
+        "flex items-center justify-center md:justify-end md:gap-10",
+        className,
+      )}
+    >
       <NavigationButton
         disabled={!canGoPrevious}
         onClick={() => onPageChange(currentPage - 1)}
         icon={ArrowLeft}
         iconPosition="left"
       >
-        Previous
+        <span className="hidden sm:block">Previous</span>
       </NavigationButton>
 
       {/* Page Numbers */}
@@ -73,7 +78,7 @@ export function Pagination({
             return (
               <div
                 key={`ellipsis-${index}`}
-                className="flex h-10 w-10 items-center justify-center text-sm font-medium text-[#717680]"
+                className="flex size-10 items-center justify-center text-sm font-medium text-[#717680]"
               >
                 ...
               </div>
@@ -86,7 +91,7 @@ export function Pagination({
               key={pageNumber}
               onClick={() => onPageChange(pageNumber as number)}
               className={cn(
-                "flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors",
+                "flex size-10 cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors",
                 isActive
                   ? "bg-[#F9F5FF] text-[#7F56D9]"
                   : "text-[#717680] hover:bg-gray-50",
@@ -104,7 +109,7 @@ export function Pagination({
         icon={ArrowRight}
         iconPosition="right"
       >
-        Next
+        <span className="hidden sm:block">Next</span>
       </NavigationButton>
     </div>
   );

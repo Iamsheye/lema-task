@@ -2,6 +2,7 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { Loading } from "./Loading";
@@ -79,6 +80,7 @@ export function Table<TData>({
     columns,
     filterFns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
     manualPagination,
     manualSorting,
@@ -133,9 +135,14 @@ export function Table<TData>({
   );
 
   return (
-    <div className={cn("overflow-hidden overflow-x-auto", className)}>
-      <div className="rounded-lg border border-[#E9EAEB] bg-white">
-        <table className="w-full">
+    <div>
+      <div
+        className={cn(
+          "overflow-auto rounded-lg border border-[#E9EAEB] bg-white",
+          className,
+        )}
+      >
+        <table className="w-max min-w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -186,8 +193,9 @@ export function Table<TData>({
       </div>
 
       {pagination && (
-        <div className="mt-6">
+        <div className="mt-6 overflow-auto">
           <Pagination
+            className="w-max min-w-full"
             currentPage={pagination.pageIndex + 1}
             totalPages={pagination.pageCount}
             onPageChange={(page) => pagination.onPageChange(page - 1)}
