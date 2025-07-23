@@ -65,7 +65,10 @@ const columns = [
         return <span className="text-sm text-[#535862]">No address</span>;
 
       return (
-        <span className="block truncate text-sm text-[#535862]">
+        <span
+          className="block truncate text-sm text-[#535862]"
+          title={`${address.street}, ${address.state}, ${address.city}, ${address.zipcode}`}
+        >
           {address.street}, {address.state}, {address.city}, {address.zipcode}
         </span>
       );
