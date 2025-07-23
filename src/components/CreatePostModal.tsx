@@ -1,5 +1,15 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Modal } from "./ui/Modal";
+import { FormField, Input, Textarea } from "./ui/FormField";
+
+const postSchema = z.object({
+  title: z.string().min(1, "Post title is required").trim(),
+  body: z.string().min(1, "Post content is required").trim(),
+});
+
+type PostFormData = z.infer<typeof postSchema>;
 
 interface PostModalProps {
   open: boolean;
@@ -14,71 +24,61 @@ export function CreatePostModal({
   onSubmit,
   isSubmitting,
 }: PostModalProps) {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+  } = useForm<PostFormData>({
+    resolver: zodResolver(postSchema),
+    mode: "onChange",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!title.trim() || !body.trim()) return;
-
-    onSubmit({ title: title.trim(), body: body.trim() });
-
-    // Reset form after submission
-    setTitle("");
-    setBody("");
+  const onFormSubmit = (data: PostFormData) => {
+    onSubmit(data);
+    reset();
   };
 
   const handleCancel = () => {
-    setTitle("");
-    setBody("");
+    reset();
     onOpenChange(false);
   };
 
   return (
-    <Modal open={open} onOpenChange={onOpenChange} title="New Post">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        {/* Form Fields */}
+    <Modal open={open} onOpenChange={handleCancel} title="New Post">
+      <form
+        onSubmit={handleSubmit(onFormSubmit)}
+        className="flex flex-col gap-6"
+      >
         <div className="flex flex-col gap-6">
-          {/* Post Title Field */}
-          <div className="flex flex-col gap-[10px]">
-            <label
-              htmlFor="post-title"
-              className="text-lg font-medium text-[#535862]"
-            >
-              Post title
-            </label>
-            <input
+          <FormField
+            label="Post title"
+            htmlFor="post-title"
+            error={errors.title?.message}
+          >
+            <Input
               id="post-title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              {...register("title")}
               placeholder="Give your post a title"
-              className="flex items-center rounded border border-[#E2E8F0] bg-white px-4 py-[10px] text-sm leading-[1.5] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none"
-              required
+              error={!!errors.title}
             />
-          </div>
+          </FormField>
 
-          {/* Post Content Field */}
-          <div className="flex flex-col gap-[10px]">
-            <label
-              htmlFor="post-content"
-              className="text-lg font-medium text-[#535862]"
-            >
-              Post content
-            </label>
-            <textarea
+          <FormField
+            label="Post content"
+            htmlFor="post-content"
+            error={errors.body?.message}
+          >
+            <Textarea
               id="post-content"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
+              {...register("body")}
               placeholder="Write something mind-blowing"
               rows={4}
-              className="flex resize-none rounded border border-[#E2E8F0] bg-white px-4 py-[10px] text-sm leading-[1.5] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none"
-              required
+              error={!!errors.body}
             />
-          </div>
+          </FormField>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex items-center justify-end gap-2">
           <button
             type="button"
@@ -90,7 +90,7 @@ export function CreatePostModal({
           </button>
           <button
             type="submit"
-            disabled={isSubmitting || !title.trim() || !body.trim()}
+            disabled={isSubmitting || !isValid}
             className="flex h-10 items-center justify-center gap-2 rounded border border-[#334155] bg-[#334155] px-4 text-sm leading-[1.5] font-semibold text-white hover:bg-[#475569] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? "Publishing..." : "Publish"}
