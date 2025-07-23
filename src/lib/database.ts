@@ -79,7 +79,6 @@ export class DatabaseService {
         a.zipcode
       FROM users u
       LEFT JOIN addresses a ON u.id = a.user_id
-      ORDER BY u.name 
       LIMIT ? OFFSET ?
     `);
 
