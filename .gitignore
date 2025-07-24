@@ -10,3 +10,10 @@ count.txt
 .output
 .vinxi
 count.txt
+.vercel
+
+# Local Netlify folder
+.netlify
+
+# Docker
+.docker

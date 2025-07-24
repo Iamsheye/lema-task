@@ -125,6 +125,9 @@ export function Table<TData>({
             "border-b border-[#E9EAEB] px-6 py-4 text-sm",
             rowIndex === table.getRowModel().rows.length - 1 && "border-none",
           )}
+          style={{
+            minWidth: cell.column.id === "address" ? "392px" : undefined,
+          }}
         >
           {renderCell
             ? renderCell(cell, rowIndex)
@@ -150,6 +153,10 @@ export function Table<TData>({
                   <th
                     key={header.id}
                     className="border-b border-[#E9EAEB] px-6 py-3 text-left text-xs font-medium text-[#535862]"
+                    style={{
+                      minWidth:
+                        header.column.id === "address" ? "392px" : undefined,
+                    }}
                   >
                     {header.isPlaceholder ? null : (
                       <div
