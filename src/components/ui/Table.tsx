@@ -18,42 +18,26 @@ import type {
 import { cn } from "@/lib/utils";
 
 interface TableProps<TData> {
-  /** Table data */
   data: Array<TData>;
-  /** Column definitions */
   columns: Array<ColumnDef<TData, any>>;
-  /** Loading state */
   loading?: boolean;
-  /** Custom loading component */
   loadingComponent?: ReactNode;
-  /** Empty state message */
   emptyMessage?: string;
-  /** Custom empty state component */
   emptyComponent?: ReactNode;
-  /** Table container className */
   className?: string;
-  /** Custom filter functions */
   filterFns?: Record<string, FilterFn<TData>>;
-  /** Pagination configuration */
   pagination?: {
     pageIndex: number;
     pageSize: number;
     pageCount: number;
     onPageChange: (page: number) => void;
   };
-  /** Manual pagination mode */
   manualPagination?: boolean;
-  /** Sorting state */
   sorting?: SortingState;
-  /** Sorting change handler */
   onSortingChange?: OnChangeFn<SortingState>;
-  /** Manual sorting mode */
   manualSorting?: boolean;
-  /** Custom row renderer */
   renderRow?: (row: any, rowIndex: number) => ReactNode;
-  /** Custom cell renderer */
   renderCell?: (cell: any, rowIndex: number) => ReactNode;
-  /** Table options override */
   tableOptions?: Partial<TableOptions<TData>>;
 }
 

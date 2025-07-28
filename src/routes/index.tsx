@@ -27,7 +27,7 @@ function App() {
   const paginationData = usersQuery.data?.pagination;
 
   const handlePageChange = (newPage: number) => {
-    setPage(newPage + 1); // Convert from 0-based to 1-based
+    setPage(newPage + 1);
   };
 
   return (
@@ -44,7 +44,7 @@ function App() {
           pagination={
             paginationData
               ? {
-                  pageIndex: paginationData.page - 1, // Convert to 0-based
+                  pageIndex: paginationData.page - 1,
                   pageSize: paginationData.limit,
                   pageCount: paginationData.totalPages,
                   onPageChange: handlePageChange,

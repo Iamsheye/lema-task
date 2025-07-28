@@ -62,16 +62,8 @@ describe("UsersTable", () => {
       username: "bobwilson",
       email: "bob@example.com",
       phone: "555-123-4567",
-      // No address for this user
     },
   ];
-
-  const mockPagination = {
-    pageIndex: 0,
-    pageSize: 10,
-    pageCount: 1,
-    onPageChange: vi.fn(),
-  };
 
   beforeEach(() => {
     vi.clearAllMocks();

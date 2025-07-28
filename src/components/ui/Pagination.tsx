@@ -19,11 +19,10 @@ export function Pagination({
   const canGoNext = currentPage < totalPages;
 
   const generatePageNumbers = () => {
-    const delta = 2; // Number of pages to show on each side of current page
+    const delta = 2;
     const range = [];
     const rangeWithDots = [];
 
-    // Calculate the range of pages to show
     const start = Math.max(1, currentPage - delta);
     const end = Math.min(totalPages, currentPage + delta);
 
@@ -31,7 +30,6 @@ export function Pagination({
       range.push(i);
     }
 
-    // Add first page and dots if necessary
     if (start > 1) {
       rangeWithDots.push(1);
       if (start > 2) {
@@ -39,10 +37,8 @@ export function Pagination({
       }
     }
 
-    // Add the calculated range
     rangeWithDots.push(...range);
 
-    // Add last page and dots if necessary
     if (end < totalPages) {
       if (end < totalPages - 1) {
         rangeWithDots.push("...");
@@ -71,7 +67,6 @@ export function Pagination({
         <span className="hidden sm:block">Previous</span>
       </NavigationButton>
 
-      {/* Page Numbers */}
       <div className="flex items-center gap-0.5">
         {pageNumbers.map((pageNumber, index) => {
           if (pageNumber === "...") {

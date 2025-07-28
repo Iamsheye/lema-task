@@ -38,7 +38,6 @@ const postsRouter = {
       }),
     )
     .query(({ input }) => {
-      // Check if user exists first
       const user = DatabaseService.getUserById(input.userId);
       if (!user) {
         throw new TRPCError({
@@ -62,7 +61,6 @@ const postsRouter = {
       }),
     )
     .mutation(({ input }) => {
-      // Check if user exists first
       const user = DatabaseService.getUserById(input.userId);
       if (!user) {
         throw new TRPCError({
@@ -71,7 +69,6 @@ const postsRouter = {
         });
       }
 
-      // Create the post
       const post = DatabaseService.createPost({
         userId: input.userId,
         title: input.title,

@@ -1,7 +1,6 @@
 import { join } from "node:path";
 import Database from "better-sqlite3";
 
-// Create a connection to the SQLite database
 const dbPath = join(process.cwd(), "data.db");
 const db = new Database(dbPath);
 
@@ -34,7 +33,6 @@ export interface Post {
 }
 
 export class DatabaseService {
-  // Get posts by user ID
   static getPostsByUserId(userId: string): Array<Post> {
     const stmt = db.prepare(
       "SELECT * FROM posts WHERE user_id = ? ORDER BY created_at DESC",
@@ -42,26 +40,22 @@ export class DatabaseService {
     return stmt.all(userId) as Array<Post>;
   }
 
-  // Delete a post by ID
   static deletePost(postId: string): boolean {
     const stmt = db.prepare("DELETE FROM posts WHERE id = ?");
     const result = stmt.run(postId);
     return result.changes > 0;
   }
 
-  // Check if post exists
   static postExists(postId: string): boolean {
     const stmt = db.prepare("SELECT 1 FROM posts WHERE id = ?");
     return stmt.get(postId) !== undefined;
   }
 
-  // Get user by ID (helper function)
   static getUserById(userId: string): User | undefined {
     const stmt = db.prepare("SELECT * FROM users WHERE id = ?");
     return stmt.get(userId) as User | undefined;
   }
 
-  // Get users with their addresses
   static getUsersWithAddresses(
     limit = 10,
     offset = 0,
@@ -109,10 +103,9 @@ export class DatabaseService {
       };
     });
 
-    return { users, total };
+    return { users: users.sort((a, b) => a.name.localeCompare(b.name)), total };
   }
 
-  // Create a new post
   static createPost(data: {
     userId: string;
     title: string;

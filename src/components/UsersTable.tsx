@@ -45,12 +45,10 @@ const columns = [
       const addressA = rowA.original.address;
       const addressB = rowB.original.address;
 
-      // Handle null/undefined addresses
       if (!addressA && !addressB) return 0;
       if (!addressA) return 1;
       if (!addressB) return -1;
 
-      // Sort by city, then state, then street
       const cityComparison = addressA.city.localeCompare(addressB.city);
       if (cityComparison !== 0) return cityComparison;
 
