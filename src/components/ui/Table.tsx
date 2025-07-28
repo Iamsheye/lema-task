@@ -86,7 +86,7 @@ export function Table<TData>({
     <tr>
       <td colSpan={columns.length} className="h-72">
         <div className="grid h-full place-items-center">
-          <Loading className="mx-auto" />
+          <Loading />
         </div>
       </td>
     </tr>
@@ -110,7 +110,7 @@ export function Table<TData>({
             rowIndex === table.getRowModel().rows.length - 1 && "border-none",
           )}
           style={{
-            minWidth: cell.column.id === "address" ? "392px" : undefined,
+            width: cell.column.id === "address" ? "392px" : undefined,
           }}
         >
           {renderCell
@@ -138,7 +138,7 @@ export function Table<TData>({
                     key={header.id}
                     className="text-text-secondary border-none px-6 py-3 text-left text-xs font-medium"
                     style={{
-                      minWidth:
+                      width:
                         header.column.id === "address" ? "392px" : undefined,
                     }}
                   >
