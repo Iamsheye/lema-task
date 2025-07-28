@@ -106,7 +106,7 @@ export function Table<TData>({
         <td
           key={cell.id}
           className={cn(
-            "border-border-default border-b px-6 py-4 text-sm",
+            "border-border-table border-b px-6 py-4 text-sm",
             rowIndex === table.getRowModel().rows.length - 1 && "border-none",
           )}
           style={{
@@ -125,7 +125,7 @@ export function Table<TData>({
     <div>
       <div
         className={cn(
-          "border-border-default overflow-auto rounded-lg border bg-white",
+          "border-border-table overflow-auto rounded-lg border bg-white",
           className,
         )}
       >
@@ -136,7 +136,7 @@ export function Table<TData>({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="text-text-secondary border-border-default border-b px-6 py-3 text-left text-xs font-medium"
+                    className="text-text-secondary border-none px-6 py-3 text-left text-xs font-medium"
                     style={{
                       minWidth:
                         header.column.id === "address" ? "392px" : undefined,
@@ -167,7 +167,7 @@ export function Table<TData>({
             ))}
           </thead>
 
-          <tbody className="divide-border-default divide-y">
+          <tbody className="divide-border-table divide-y">
             {loading
               ? loadingComponent || defaultLoadingComponent
               : table.getRowModel().rows.length === 0

@@ -32,7 +32,11 @@ function RouteComponent() {
     <div className="mb-8 space-y-6">
       <div className="flex flex-col gap-4">
         <Link to="/">
-          <NavigationButton icon={ArrowLeft} iconPosition="left">
+          <NavigationButton
+            icon={ArrowLeft}
+            iconPosition="left"
+            className="px-0"
+          >
             Back to Users
           </NavigationButton>
         </Link>

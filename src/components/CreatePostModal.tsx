@@ -3,10 +3,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Modal } from "./ui/Modal";
 import { FormField, Input, Textarea } from "./ui/FormField";
+import { Loading } from "./ui/Loading";
 
 const postSchema = z.object({
-  title: z.string().min(1, "Post title is required").trim(),
-  body: z.string().min(1, "Post content is required").trim(),
+  title: z
+    .string()
+    .min(1, "Post title is required")
+    .max(64, "Post title must be less than 64 characters")
+    .trim(),
+  body: z
+    .string()
+    .min(1, "Post content is required")
+    .max(512, "Post content must be less than 512 characters")
+    .trim(),
 });
 
 type PostFormData = z.infer<typeof postSchema>;
@@ -45,7 +54,12 @@ export function CreatePostModal({
   };
 
   return (
-    <Modal open={open} onOpenChange={handleCancel} title="New Post">
+    <Modal
+      open={open}
+      showCloseButton={false}
+      onOpenChange={handleCancel}
+      title="New Post"
+    >
       <form
         onSubmit={handleSubmit(onFormSubmit)}
         className="flex flex-col gap-6"
@@ -91,9 +105,17 @@ export function CreatePostModal({
           <button
             type="submit"
             disabled={isSubmitting || !isValid}
-            className="border-text-slate-600 bg-text-slate-600 hover:bg-text-slate-500 flex h-10 items-center justify-center gap-2 rounded border px-4 text-sm leading-normal font-semibold text-white focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="bg-text-slate-600 hover:bg-button-hover flex h-10 cursor-pointer items-center justify-center gap-2 rounded px-4 text-sm leading-normal font-semibold text-white focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? "Publishing..." : "Publish"}
+            Publish
+            {isSubmitting && (
+              <Loading
+                size="sm"
+                className={{
+                  circle: "bg-white",
+                }}
+              />
+            )}
           </button>
         </div>
       </form>

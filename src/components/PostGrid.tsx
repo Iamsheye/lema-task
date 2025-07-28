@@ -1,6 +1,7 @@
 import { PlusCircle, Trash2 } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { CreatePostModal } from "./CreatePostModal";
 import type { Post } from "@/lib/database";
 import { useTRPC } from "@/integrations/trpc/react";
@@ -28,10 +29,10 @@ function NewPostCard({
       title="Create New Post"
       onClick={() => onNewPost()}
       disabled={isCreating}
-      className="border-border-default flex h-[293px] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-white p-6 disabled:cursor-not-allowed disabled:opacity-50"
+      className="border-border-default flex h-[293px] w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-white p-6 disabled:cursor-not-allowed disabled:opacity-50"
     >
-      <PlusCircle size={20} />
-      <span className="text-muted text-sm font-semibold">
+      <PlusCircle size={20} className="text-text-muted" />
+      <span className="text-text-muted text-sm font-semibold">
         {isCreating ? "Creating..." : "New Post"}
       </span>
     </button>
@@ -40,32 +41,23 @@ function NewPostCard({
 
 function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
   return (
-    <div className="border-border-default relative flex h-[293px] w-full flex-col gap-4 rounded-lg border bg-white p-6 shadow-[0px_2px_4px_-2px_rgba(10,13,18,0.06),0px_4px_8px_-2px_rgba(10,13,18,0.1)]">
+    <div className="border-border-default relative flex h-[293px] w-full flex-col gap-4 rounded-lg border bg-white py-6 shadow-[0px_2px_4px_-2px_rgba(10,13,18,0.06),0px_4px_8px_-2px_rgba(10,13,18,0.1)]">
       <button
         onClick={() => onDelete(post.id)}
         disabled={isDeleting}
-        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded bg-transparent hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="absolute top-1 right-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded bg-transparent hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
         aria-label="Delete post"
         title="Delete post"
       >
-        <Trash2 className="text-danger size-5 md:size-4" />
+        <Trash2 className="text-text-danger size-3" />
       </button>
 
-      {/* Post title */}
-      <h3 className="text-text-secondary text-lg leading-tight font-medium">
+      <h3 className="text-text-secondary px-6 text-lg leading-tight font-medium">
         {post.title}
       </h3>
 
-      {/* Post content preview */}
-      <div className="flex-1 overflow-hidden">
-        <p
-          className="text-text-secondary overflow-hidden text-sm leading-relaxed text-ellipsis"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 10,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
+      <div className="flex-1 overflow-auto px-6">
+        <p className="text-text-secondary text-sm leading-relaxed">
           {post.body}
         </p>
       </div>
@@ -91,6 +83,7 @@ export function PostGrid({ posts, userId }: PostGridProps) {
       queryClient.invalidateQueries({
         queryKey: trpc.posts.listByUser.queryKey({ userId }),
       });
+      toast.success("Post deleted successfully");
     },
   });
 
@@ -126,9 +119,7 @@ export function PostGrid({ posts, userId }: PostGridProps) {
   };
 
   const handleDeletePost = (postId: string) => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      deletePostMutation.mutate(postId);
-    }
+    deletePostMutation.mutate(postId);
   };
 
   return (
