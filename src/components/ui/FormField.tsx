@@ -18,8 +18,11 @@ export function FormField({
   className = "",
 }: FormFieldProps) {
   return (
-    <div className={cn("flex flex-col gap-[10px]", className)}>
-      <label htmlFor={htmlFor} className="text-lg font-medium text-[#535862]">
+    <div className={cn("flex flex-col gap-2.5", className)}>
+      <label
+        htmlFor={htmlFor}
+        className="text-text-secondary text-lg font-medium"
+      >
         {label}
       </label>
       {children}
@@ -35,8 +38,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ error, className = "", ...props }, ref) => {
     const baseClassName =
-      "flex items-center rounded border bg-white px-4 py-[10px] text-sm leading-[1.5] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none";
-    const errorClassName = error ? "border-red-500" : "border-[#E2E8F0]";
+      "flex items-center rounded border bg-white px-4 py-2.5 text-sm leading-normal placeholder:text-text-placeholder focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none";
+    const errorClassName = error ? "border-red-500" : "border-border-light";
 
     return (
       <input
@@ -58,8 +61,8 @@ interface TextareaProps
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ error, className = "", ...props }, ref) => {
     const baseClassName =
-      "flex resize-none rounded border bg-white px-4 py-[10px] text-sm leading-[1.5] placeholder:text-[#94A3B8] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none";
-    const errorClassName = error ? "border-red-500" : "border-[#E2E8F0]";
+      "flex resize-none rounded border bg-white px-4 py-2.5 text-sm leading-normal placeholder:text-text-placeholder focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none";
+    const errorClassName = error ? "border-red-500" : "border-border-light";
 
     return (
       <textarea

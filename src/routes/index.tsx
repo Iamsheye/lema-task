@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-[3.75rem] leading-[1.2] font-medium tracking-[-0.02em]">
+      <h1 className="text-hero leading-relaxed font-medium tracking-tight">
         Users
       </h1>
       {usersQuery.isError ? (

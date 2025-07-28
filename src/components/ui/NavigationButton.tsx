@@ -20,7 +20,7 @@ export function NavigationButton({
   const baseClasses = cn(
     "flex items-center gap-2 rounded-lg font-semibold transition-colors cursor-pointer",
     "hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50",
-    "text-[#535862]",
+    "text-text-secondary",
   );
 
   const sizeClasses = {

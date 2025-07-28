@@ -84,14 +84,14 @@ export function CreatePostModal({
             type="button"
             onClick={handleCancel}
             disabled={isSubmitting}
-            className="flex h-10 items-center justify-center gap-[6px] rounded border border-[#E2E8F0] bg-white px-4 text-sm leading-[1.21] font-normal text-[#334155] hover:bg-gray-50 focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="border-border-light text-text-slate-600 flex h-10 items-center justify-center gap-1.5 rounded border bg-white px-4 text-sm leading-tight font-normal hover:bg-gray-50 focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isSubmitting || !isValid}
-            className="flex h-10 items-center justify-center gap-2 rounded border border-[#334155] bg-[#334155] px-4 text-sm leading-[1.5] font-semibold text-white hover:bg-[#475569] focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+            className="border-text-slate-600 bg-text-slate-600 hover:bg-text-slate-500 flex h-10 items-center justify-center gap-2 rounded border px-4 text-sm leading-normal font-semibold text-white focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? "Publishing..." : "Publish"}
           </button>

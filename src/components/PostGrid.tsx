@@ -28,10 +28,10 @@ function NewPostCard({
       title="Create New Post"
       onClick={() => onNewPost()}
       disabled={isCreating}
-      className="flex h-[293px] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#D5D7DA] bg-white p-6 disabled:cursor-not-allowed disabled:opacity-50"
+      className="border-border-default flex h-[293px] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed bg-white p-6 disabled:cursor-not-allowed disabled:opacity-50"
     >
       <PlusCircle size={20} />
-      <span className="text-sm font-semibold text-[#717680]">
+      <span className="text-muted text-sm font-semibold">
         {isCreating ? "Creating..." : "New Post"}
       </span>
     </button>
@@ -40,7 +40,7 @@ function NewPostCard({
 
 function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
   return (
-    <div className="relative flex h-[293px] w-full flex-col gap-4 rounded-lg border border-[#D5D7DA] bg-white p-6 shadow-[0px_2px_4px_-2px_rgba(10,13,18,0.06),0px_4px_8px_-2px_rgba(10,13,18,0.1)]">
+    <div className="border-border-default relative flex h-[293px] w-full flex-col gap-4 rounded-lg border bg-white p-6 shadow-[0px_2px_4px_-2px_rgba(10,13,18,0.06),0px_4px_8px_-2px_rgba(10,13,18,0.1)]">
       <button
         onClick={() => onDelete(post.id)}
         disabled={isDeleting}
@@ -48,18 +48,18 @@ function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
         aria-label="Delete post"
         title="Delete post"
       >
-        <Trash2 className="size-5 text-[#F9566A] md:size-4" />
+        <Trash2 className="text-danger size-5 md:size-4" />
       </button>
 
       {/* Post title */}
-      <h3 className="text-lg leading-tight font-medium text-[#535862]">
+      <h3 className="text-secondary text-lg leading-tight font-medium">
         {post.title}
       </h3>
 
       {/* Post content preview */}
       <div className="flex-1 overflow-hidden">
         <p
-          className="overflow-hidden text-sm leading-relaxed text-ellipsis text-[#535862]"
+          className="text-secondary overflow-hidden text-sm leading-relaxed text-ellipsis"
           style={{
             display: "-webkit-box",
             WebkitLineClamp: 10,

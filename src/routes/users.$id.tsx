@@ -36,10 +36,10 @@ function RouteComponent() {
             Back to Users
           </NavigationButton>
         </Link>
-        <h1 className="text-[2.25rem] leading-none font-medium tracking-[-0.02em] text-[#181D27]">
+        <h1 className="text-title text-primary leading-none font-medium tracking-tight">
           {data?.user.name}
         </h1>
-        <p className="text-sm text-[#535862]">
+        <p className="text-secondary text-sm">
           <span>{data?.user.email}</span> •{" "}
           <span className="font-medium">{data?.posts.length}</span> Posts
         </p>

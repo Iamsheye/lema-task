@@ -73,7 +73,7 @@ export function Pagination({
             return (
               <div
                 key={`ellipsis-${index}`}
-                className="flex size-10 items-center justify-center text-sm font-medium text-[#717680]"
+                className="text-text-muted flex size-10 items-center justify-center text-sm font-medium"
               >
                 ...
               </div>
@@ -88,8 +88,8 @@ export function Pagination({
               className={cn(
                 "flex size-10 cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-[#F9F5FF] text-[#7F56D9]"
-                  : "text-[#717680] hover:bg-gray-50",
+                  ? "text-text-purple bg-bg-purple-light"
+                  : "text-text-muted hover:bg-gray-50",
               )}
             >
               {pageNumber}

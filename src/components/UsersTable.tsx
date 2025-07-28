@@ -26,7 +26,7 @@ const columns = [
     enableSorting: true,
     sortingFn: "alphanumeric",
     cell: (info) => (
-      <span className="text-sm font-medium text-[#535862]">
+      <span className="text-text-secondary text-sm font-medium">
         {info.getValue()}
       </span>
     ),
@@ -35,7 +35,7 @@ const columns = [
     header: "Email Address",
     enableSorting: false,
     cell: (info) => (
-      <span className="text-sm text-[#535862]">{info.getValue()}</span>
+      <span className="text-secondary text-sm">{info.getValue()}</span>
     ),
   }),
   columnHelper.accessor("address", {
@@ -60,11 +60,11 @@ const columns = [
     cell: (info) => {
       const address = info.getValue();
       if (!address)
-        return <span className="text-sm text-[#535862]">No address</span>;
+        return <span className="text-secondary text-sm">No address</span>;
 
       return (
         <span
-          className="block truncate text-sm text-[#535862]"
+          className="text-secondary block truncate text-sm"
           title={`${address.street}, ${address.state}, ${address.city}, ${address.zipcode}`}
         >
           {address.street}, {address.state}, {address.city}, {address.zipcode}

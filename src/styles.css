@@ -39,6 +39,33 @@ body {
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
+
+  --color-text-primary: #181d27;
+  --color-text-secondary: #535862;
+  --color-text-muted: #717680;
+  --color-text-danger: #f9566a;
+  --color-text-placeholder: #94a3b8;
+  --color-text-slate-600: #334155;
+  --color-text-slate-500: #475569;
+  --color-text-purple: #7f56d9;
+
+  --color-border-light: #e2e8f0;
+  --color-border-default: #d5d7da;
+  --color-border-table: #e9eaeb;
+
+  --color-bg-purple-light: #f9f5ff;
+
+  --leading-tight: 1.21;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.2;
+  --tracking-tight: -0.02em;
+  --text-hero: 3.75rem;
+  --text-title: 2.25rem;
+
+  --shadow-card:
+    0px 2px 4px -2px rgba(10, 13, 18, 0.06),
+    0px 4px 8px -2px rgba(10, 13, 18, 0.1);
+
   --sidebar-foreground: oklch(0.141 0.005 285.823);
   --sidebar-primary: oklch(0.21 0.006 285.885);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -108,6 +135,31 @@ body {
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
+  /* Custom application utilities */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-danger: var(--color-text-danger);
+  --color-text-placeholder: var(--color-text-placeholder);
+  --color-text-slate-600: var(--color-text-slate-600);
+  --color-text-slate-500: var(--color-text-slate-500);
+  --color-text-purple: var(--color-text-purple);
+  --color-border-light: var(--color-border-light);
+  --color-border-default: var(--color-border-default);
+  --color-border-table: var(--color-border-table);
+  --color-bg-purple-light: var(--color-bg-purple-light);
+  --spacing-card-height: var(--spacing-card-height);
+  --spacing-form-gap: var(--spacing-form-gap);
+  --spacing-button-gap: var(--spacing-button-gap);
+  --leading-tight: var(--leading-tight);
+  --leading-normal: var(--leading-normal);
+  --leading-relaxed: var(--leading-relaxed);
+  --tracking-tight: var(--tracking-tight);
+  --text-hero: var(--text-hero);
+  --text-title: var(--text-title);
+  --shadow-card: var(--shadow-card);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
