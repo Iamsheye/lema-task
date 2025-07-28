@@ -39,7 +39,7 @@ function RouteComponent() {
         <h1 className="text-title text-primary leading-none font-medium tracking-tight">
           {data?.user.name}
         </h1>
-        <p className="text-secondary text-sm">
+        <p className="text-text-secondary text-sm">
           <span>{data?.user.email}</span> •{" "}
           <span className="font-medium">{data?.posts.length}</span> Posts
         </p>

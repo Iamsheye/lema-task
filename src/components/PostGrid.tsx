@@ -52,14 +52,14 @@ function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
       </button>
 
       {/* Post title */}
-      <h3 className="text-secondary text-lg leading-tight font-medium">
+      <h3 className="text-text-secondary text-lg leading-tight font-medium">
         {post.title}
       </h3>
 
       {/* Post content preview */}
       <div className="flex-1 overflow-hidden">
         <p
-          className="text-secondary overflow-hidden text-sm leading-relaxed text-ellipsis"
+          className="text-text-secondary overflow-hidden text-sm leading-relaxed text-ellipsis"
           style={{
             display: "-webkit-box",
             WebkitLineClamp: 10,
