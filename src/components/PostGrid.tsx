@@ -52,11 +52,11 @@ function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
         <Trash2 className="text-text-danger size-3" />
       </button>
 
-      <h3 className="text-text-secondary px-6 text-lg leading-tight font-medium">
+      <h3 className="text-text-secondary px-6 text-lg leading-tight font-medium break-words">
         {post.title}
       </h3>
 
-      <div className="flex-1 overflow-auto px-6">
+      <div className="flex-1 overflow-y-auto px-6 break-words">
         <p className="text-text-secondary text-sm leading-relaxed">
           {post.body}
         </p>
