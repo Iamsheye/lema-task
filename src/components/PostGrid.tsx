@@ -56,8 +56,8 @@ function PostCard({ post, onDelete, isDeleting }: PostCardProps) {
         {post.title}
       </h3>
 
-      <div className="flex-1 overflow-y-auto px-6 break-words">
-        <p className="text-text-secondary text-sm leading-relaxed">
+      <div className="flex-1 px-6">
+        <p className="text-text-secondary line-clamp-9 overflow-hidden text-sm leading-relaxed text-ellipsis">
           {post.body}
         </p>
       </div>
